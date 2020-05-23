@@ -1,0 +1,58 @@
+spring:
+  liquibase:
+    change-log: classpath:database-changelog.xml
+  jpa:
+    properties:
+      hibernate:
+        temp:
+          use_jdbc_metadata-defaults: false
+        jdbc:
+          lob:
+            non_contextual_creation: true
+    open-in-view: false
+  datasource:
+    url: jdbc:postgresql://localhost:5432/cookingnotes
+    username: kirill
+    password: prohack77
+  mail:
+    host: smtp.gmail.com
+    username: cooking.recipes.notes@gmail.com
+    password: GoogleProHack77
+    port: 465
+    protocol: smtps
+  security:
+    oauth2:
+      client:
+        registration:
+          google:
+            clientId: 526175283060-r2rmm73dvfrjv3ird0jg75hqjtsfjm60.apps.googleusercontent.com
+            clientSecret: l32EsJ5-yywKBJWNjGruKGJ0
+            redirectUriTemplate: "{baseUrl}/api/oauth2/callback/{registrationId}"
+            scope:
+              - email
+              - profile
+          facebook:
+            clientId: 514391199380816
+            clientSecret: cd33cd1318680e88f5f15e6b13f06c0d
+            redirectUriTemplate: "{baseUrl}/api/oauth2/callback/{registrationId}"
+            scope:
+              - email
+              - public_profile
+        provider:
+          facebook:
+            authorizationUri: https://www.facebook.com/v3.0/dialog/oauth
+            tokenUri: https://graph.facebook.com/v3.0/oauth/access_token
+            userInfoUri: https://graph.facebook.com/v3.0/me?fields=id,first_name,middle_name,last_name,name,email,verified,is_verified,picture.width(250).height(250)
+server:
+  port: 8080
+app:
+  auth:
+    tokenSecret: 926D96C90030DD58429D2751AC1BDBBC
+    tokenExpirationMsec: 864000000
+  oauth2:
+    authorizedRedirectUris:
+      - http://localhost:3000/oauth2/redirect
+springdoc:
+  swagger-ui:
+    path: /swagger-ui.html
+    preauthorizeApiKey: asdhfkjsdhafk
