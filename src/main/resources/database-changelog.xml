@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+
+    <changeSet id="1" author="kirill">
+        <createTable tableName="users">
+            <column name="id" type="bigint" autoIncrement="true">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="email" type="text">
+                <constraints nullable="false"/>
+            </column>
+            <column name="first_name" type="text"/>
+            <column name="second_name" type="text"/>
+            <column name="display_name" type="text">
+                <constraints nullable="false"/>
+            </column>
+            <column name="password" type="text"/>
+            <column name="avatar" type="bytea"/>
+            <column name="cover" type="bytea"/>
+            <column name="provider" type="text">
+                <constraints nullable="false"/>
+            </column>
+            <column name="provider_id" type="text"/>
+            <column name="country" type="text"/>
+            <column name="city" type="text"/>
+            <column name="about" type="text"/>
+            <column name="blog_link" type="text"/>
+            <column name="twitter_link" type="text"/>
+            <column name="facebook_link" type="text"/>
+            <column name="instagram_link" type="text"/>
+        </createTable>
+        <createTable tableName="categories">
+            <column name="id" type="int">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="name" type="text">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        <createTable tableName="units">
+            <column name="id" type="int">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="name" type="text">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        <createTable tableName="recipes">
+            <column name="title" type="text">
+                <constraints nullable="false"/>
+            </column>
+            <column name="is_steps_with_image" type="boolean">
+                <constraints nullable="false"/>
+            </column>
+            <column name="description" type="text">
+                <constraints nullable="false"/>
+            </column>
+            <column name="date" type="timestamp">
+                <constraints nullable="false"/>
+            </column>
+            <column name="prep_time" type="int"/>
+            <column name="cook_time" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="portions" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="image" type="bytea">
+                <constraints nullable="false"/>
+            </column>
+            <column name="rating" type="int" defaultValueNumeric="0">
+                <constraints nullable="false"/>
+            </column>
+            <column name="image_preview" type="bytea">
+                <constraints nullable="false"/>
+            </column>
+            <column name="id" type="bigint" autoIncrement="true">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="user_id" type="bigint">
+                <constraints nullable="false" foreignKeyName="fk_recipe_user_id" references="users(id)"/>
+            </column>
+        </createTable>
+        <createTable tableName="ingredients">
+            <column name="id" type="bigint" autoIncrement="true">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="name" type="text">
+                <constraints nullable="false"/>
+            </column>
+            <column name="amount" type="float">
+                <constraints nullable="false"/>
+            </column>
+            <column name="unit_id" type="int">
+                <constraints nullable="false" foreignKeyName="fk_ingredient_unit_id" references="units(id)"/>
+            </column>
+            <column name="recipe_id" type="bigint">
+                <constraints nullable="false" foreignKeyName="fk_ingredient_recipe_id" references="recipes(id)"/>
+            </column>
+        </createTable>
+        <createTable tableName="steps">
+            <column name="id" type="bigint" autoIncrement="true">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="text" type="text">
+                <constraints nullable="false"/>
+            </column>
+            <column name="image" type="bytea"/>
+            <column name="recipe_id" type="bigint">
+                <constraints nullable="false" foreignKeyName="fk_step_recipe_id" references="recipes(id)"/>
+            </column>
+        </createTable>
+        <createTable tableName="comments">
+            <column name="id" type="bigint" autoIncrement="true">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="text" type="text">
+                <constraints nullable="false"/>
+            </column>
+            <column name="rating" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="date" type="timestamp">
+                <constraints nullable="false"/>
+            </column>
+            <column name="recipe_id" type="bigint">
+                <constraints nullable="false" foreignKeyName="fk_comment_recipe_id" references="recipes(id)"/>
+            </column>
+            <column name="user_id" type="bigint">
+                <constraints nullable="false" foreignKeyName="fk_comment_user_id" references="users(id)"/>
+            </column>
+        </createTable>
+        <createTable tableName="favourites_relations">
+            <column name="user_id" type="bigint">
+                <constraints nullable="false" foreignKeyName="fk_favourite_user_id" references="users(id)"/>
+            </column>
+            <column name="recipe_id" type="bigint">
+                <constraints nullable="false" foreignKeyName="fk_favourite_recipe_id" references="recipes(id)"/>
+            </column>
+        </createTable>
+        <createTable tableName="categories_relations">
+            <column name="category_id" type="int">
+                <constraints nullable="false" foreignKeyName="fk_categories_category_id" references="categories(id)"/>
+            </column>
+            <column name="recipe_id" type="bigint">
+                <constraints nullable="false" foreignKeyName="fk_categories_recipe_id" references="recipes(id)"/>
+            </column>
+        </createTable>
+        <createTable tableName="madeit_relations">
+            <column name="user_id" type="bigint">
+                <constraints nullable="false" foreignKeyName="fk_madeit_user_id" references="users(id)"/>
+            </column>
+            <column name="recipe_id" type="bigint">
+                <constraints nullable="false" foreignKeyName="fk_madeit_recipe_id" references="recipes(id)"/>
+            </column>
+        </createTable>
+        <createTable tableName="followers_relations">
+            <column name="follower_id" type="bigint">
+                <constraints nullable="false" foreignKeyName="fk_favourite_user_id" references="users(id)"/>
+            </column>
+            <column name="following_id" type="bigint">
+                <constraints nullable="false" foreignKeyName="fk_favourite_recipe_id" references="recipes(id)"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet id="2" author="kirill">
+
+    </changeSet>
+</databaseChangeLog>
