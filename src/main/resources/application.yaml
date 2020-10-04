@@ -11,7 +11,7 @@ spring:
             non_contextual_creation: true
     open-in-view: false
   datasource:
-    url: jdbc:postgresql://cooking-notes-postgresql.csnv9hg92zzq.eu-west-2.rds.amazonaws.com:5432/postgres
+    url: jdbc:postgresql://aaek3fuyafaumh.csnv9hg92zzq.eu-west-2.rds.amazonaws.com:5432/postgres
     username: postgres
     password: prohack77
   mail:
