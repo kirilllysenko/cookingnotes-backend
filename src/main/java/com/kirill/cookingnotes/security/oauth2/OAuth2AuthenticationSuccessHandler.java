@@ -45,10 +45,9 @@ public class OAuth2AuthenticationSuccessHandler extends SimpleUrlAuthenticationS
         Optional<String> redirectUri = CookieUtils.getCookie(request, REDIRECT_URI_PARAM_COOKIE_NAME)
                 .map(Cookie::getValue);
 
-        System.out.println(redirectUri);
-        if(redirectUri.isPresent() && !isAuthorizedRedirectUri(redirectUri.get())) {
-            throw new BadRequestException("Got an Unauthorized Redirect URI and can't proceed with the authentication", "NOT_AUTH_REDIRECT");
-        }
+//        if(redirectUri.isPresent() && !true) {
+//            throw new BadRequestException("Got an Unauthorized Redirect URI and can't proceed with the authentication", "NOT_AUTH_REDIRECT");
+//        }
 
         String targetUrl = redirectUri.orElse(getDefaultTargetUrl());
 
@@ -72,8 +71,6 @@ public class OAuth2AuthenticationSuccessHandler extends SimpleUrlAuthenticationS
                 .anyMatch(authorizedRedirectUri -> {
                     // Only validate host and port. Let the clients use different paths if they want to
                     URI authorizedURI = URI.create(authorizedRedirectUri);
-                    System.out.println(clientRedirectUri);
-                    System.out.println(authorizedURI.getHost());
                     return authorizedURI.getHost().equalsIgnoreCase(clientRedirectUri.getHost())
                             && authorizedURI.getPort() == clientRedirectUri.getPort();
                 });
