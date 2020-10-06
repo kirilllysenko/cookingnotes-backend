@@ -51,7 +51,7 @@ app:
     tokenExpirationMsec: 864000000
   oauth2:
     authorizedRedirectUris:
-      - http://127.0.0.1:3000/oauth2/redirect
+      - http://backend.cookingnotes.cyprog.net:3000/oauth2/redirect
 springdoc:
   swagger-ui:
     path: /swagger-ui.html
