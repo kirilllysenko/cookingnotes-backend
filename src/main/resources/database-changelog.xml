@@ -169,6 +169,11 @@
         </createTable>
     </changeSet>
     <changeSet id="2" author="kirill">
-
+        <sql>
+            insert into units(id, name)
+            values (1, 'Килограмм'),
+            (2, 'Штук'),
+            (3, 'Литров');
+        </sql>
     </changeSet>
 </databaseChangeLog>
