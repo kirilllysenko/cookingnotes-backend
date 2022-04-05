@@ -9,10 +9,10 @@ import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 @EnableJpaAuditing
 @SpringBootApplication
 @EnableConfigurationProperties(AppProperties.class)
-public class CookingnotesApplication {
+public class CookingNotesApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(CookingnotesApplication.class, args);
+        SpringApplication.run(CookingNotesApplication.class, args);
     }
 
 }

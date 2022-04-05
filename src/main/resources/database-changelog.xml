@@ -168,11 +168,6 @@
             </column>
         </createTable>
     </changeSet>
-    <changeSet id="2" author="kirill">
-        <sql>
-
-        </sql>
-    </changeSet>
     <changeSet id="3" author="kirill">
         <sql>
             insert into units(id, name)
