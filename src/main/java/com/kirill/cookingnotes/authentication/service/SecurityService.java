@@ -11,6 +11,7 @@ import com.kirill.cookingnotes.profile.service.UserService;
 import com.kirill.cookingnotes.security.AuthProvider;
 import com.kirill.cookingnotes.security.TokenProvider;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -38,6 +39,9 @@ public class SecurityService {
 
     private final Map<UUID, ActivatingUser> verifying = new HashMap<>();
     private final List<String> reserved = new ArrayList<>();
+
+    @Value("${frontend.address}")
+    private String frontendAddress;
 
     synchronized void addUser(ActivatingUser user, UUID id) {
         verifying.put(id, user);
@@ -75,7 +79,7 @@ public class SecurityService {
 
         SimpleMailMessage message = new SimpleMailMessage();
 
-        String location = ServletUriComponentsBuilder.fromUriString("http://localhost:3000").path("/verify").query("id={id}")
+        String location = ServletUriComponentsBuilder.fromUriString(frontendAddress).path("/verify").query("id={id}")
                 .buildAndExpand(id).toUriString();
 
         message.setTo(request.getEmail());
