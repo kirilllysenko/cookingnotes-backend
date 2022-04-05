@@ -171,9 +171,9 @@
     <changeSet id="3" author="kirill">
         <sql>
             insert into units(id, name)
-            values (1, 'Килограмм'),
-            (2, 'Штук'),
-            (3, 'Литров');
+            values (1, 'Kilogram'),
+                   (2, 'Piece'),
+                   (3, 'Litre');
         </sql>
     </changeSet>
 </databaseChangeLog>
