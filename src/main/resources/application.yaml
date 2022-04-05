@@ -11,13 +11,13 @@ spring:
             non_contextual_creation: true
     open-in-view: false
   datasource:
-    url: ${SPRING_DATABASE_URL}
-    username: ${SPRING_DATABASE_USERNAME}
-    password: ${SPRING_DATABASE_PASSWORD}
+    url: ${DATABASE_URL}
+    username: ${DATABASE_USERNAME}
+    password: ${DATABASE_PASSWORD}
   mail:
     host: smtp.gmail.com
-    username: ${SPRING_MAIL_ADDRESS}
-    password: ${SPRING_MAIL_PASSWORD}
+    username: ${MAIL_ADDRESS}
+    password: ${MAIL_PASSWORD}
     port: 465
     protocol: smtps
   security:
@@ -47,12 +47,12 @@ server:
   port: ${PORT}
 app:
   auth:
-    tokenSecret: ${SPRING_TOKEN_SECRET}
+    tokenSecret: ${TOKEN_SECRET}
     #926D96C90030DD58429D2751AC1BDBBC
     tokenExpirationMsec: 864000000
   oauth2:
     authorizedRedirectUris:
-      - ${SPRING_AUTH_REDIRECT_URI}
+      - ${AUTH_REDIRECT_URI}
 springdoc:
   swagger-ui:
     path: /swagger-ui.html
