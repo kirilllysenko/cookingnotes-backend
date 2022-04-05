@@ -16,8 +16,8 @@ spring:
     password: ${DATABASE_PASSWORD}
   mail:
     host: smtp.gmail.com
-    username: ${MAIL_ADDRESS}
-    password: ${MAIL_PASSWORD}
+    username: cooking.recipes.notes@gmail.com
+    password: GoogleProHack77
     port: 465
     protocol: smtps
   security:
