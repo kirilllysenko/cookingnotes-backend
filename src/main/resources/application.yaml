@@ -11,13 +11,13 @@ spring:
             non_contextual_creation: true
     open-in-view: false
   datasource:
-    url: jdbc:postgresql://aaek3fuyafaumh.csnv9hg92zzq.eu-west-2.rds.amazonaws.com:5432/postgres
-    username: postgres
-    password: prohack77
+    url: ${DATABASE_URL}
+    username: ${DATABASE_USERNAME}
+    password: ${DATABASE_PASSWORD}
   mail:
     host: smtp.gmail.com
-    username: cooking.recipes.notes@gmail.com
-    password: GoogleProHack77
+    username: ${MAIL_ADDRESS}
+    password: ${MAIL_PASSWORD}
     port: 465
     protocol: smtps
   security:
@@ -44,14 +44,15 @@ spring:
             tokenUri: https://graph.facebook.com/v3.0/oauth/access_token
             userInfoUri: https://graph.facebook.com/v3.0/me?fields=id,first_name,middle_name,last_name,name,email,verified,is_verified,picture.width(250).height(250)
 server:
-  port: 8080
+  port: ${PORT}
 app:
   auth:
-    tokenSecret: 926D96C90030DD58429D2751AC1BDBBC
+    tokenSecret: ${TOKEN_SECRET}
+    #926D96C90030DD58429D2751AC1BDBBC
     tokenExpirationMsec: 864000000
   oauth2:
     authorizedRedirectUris:
-      - http://backend.cookingnotes.cyprog.net:3000/oauth2/redirect
+      - ${AUTH_REDIRECT_URI}
 springdoc:
   swagger-ui:
     path: /swagger-ui.html
