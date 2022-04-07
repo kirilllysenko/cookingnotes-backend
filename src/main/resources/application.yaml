@@ -15,11 +15,11 @@ spring:
     username: ${DATABASE_USERNAME}
     password: ${DATABASE_PASSWORD}
   mail:
-    host: smtp.gmail.com
+    host: ${MAIL_HOST}
     username: ${MAIL_ADDRESS}
     password: ${MAIL_PASSWORD}
-    port: 465
-    protocol: smtps
+    port: ${MAIL_PORT}
+    protocol: ${MAIL_PROTOCOL}
   security:
     oauth2:
       client:
